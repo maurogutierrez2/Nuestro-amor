@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Amor ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#ff4e88,#ff9a9e);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* Corazones flotando */
+.heart{
+    position:absolute;
+    color:#fff;
+    animation: flotar 10s linear infinite;
+    font-size:20px;
+    opacity:0.7;
+}
+
+@keyframes flotar{
+    from{ transform: translateY(100vh); }
+    to{ transform: translateY(-10vh); }
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    max-width:420px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    z-index:1;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+h1{
+    color:#ff4e88;
+    margin:10px 0;
+}
+
+.time{
+    font-size:18px;
+    margin:10px 0;
+    font-weight:bold;
+}
+
+.small{
+    font-size:15px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<!-- corazones -->
+<script>
+for(let i=0;i<30;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(5+Math.random()*10)+"s";
+    h.innerHTML="❤️";
+    document.body.appendChild(h);
+}
+</script>
+
+<div class="card">
+
+    <!-- ⚠️ AQUÍ debes poner el nombre de tu foto -->
+    <img src="foto.jpg" alt="Nosotros">
+
+    <h1>Para el amor de mi vida ❤️</h1>
+
+    <p class="small">Somos pareja desde:</p>
+    <div id="novios" class="time"></div>
+
+    <p class="small">Somos esposos desde:</p>
+    <div id="esposos" class="time"></div>
+
+    <p class="small">Cada segundo te amo más 💕</p>
+</div>
+
+<script>
+const fechaNovios = new Date("2013-06-27T20:25:00");
+const fechaEsposos = new Date("2022-10-17T15:00:00");
+
+function calcularTiempo(fecha){
+    const ahora = new Date();
+    let diff = Math.floor((ahora - fecha) / 1000);
+
+    const dias = Math.floor(diff / 86400);
+    diff %= 86400;
+
+    const horas = Math.floor(diff / 3600);
+    diff %= 3600;
+
+    const minutos = Math.floor(diff / 60);
+    const segundos = diff % 60;
+
+    return `${dias} días ${horas} horas ${minutos} minutos ${segundos} segundos`;
+}
+
+function actualizar(){
+    document.getElementById("novios").textContent = calcularTiempo(fechaNovios);
+    document.getElementById("esposos").textContent = calcularTiempo(fechaEsposos);
+}
+
+setInterval(actualizar,1000);
+actualizar();
+</script>
+
+</body>
+</html>
